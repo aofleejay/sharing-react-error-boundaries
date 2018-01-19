@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import Layout from './Layout'
 
 class ErrorBoundary extends Component {
-  state = { hasError: false }
+  state = { hasError: false, errorMessage: null }
 
   componentDidCatch(error, info) {
-    this.setState({ hasError: true })
+    this.setState({ hasError: true, errorMessage: error.message })
   }
 
   render() {
@@ -13,6 +13,7 @@ class ErrorBoundary extends Component {
       return (
         <Layout>
           <h1>Whoops, looks like something went wrong.</h1>
+          <p>{this.state.errorMessage}</p>
         </Layout>
       )
     }
